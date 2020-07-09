@@ -13,6 +13,8 @@ import * as usersActions from '../../store/actions/user.actions';
 export class ListaComponent implements OnInit {
 
   usuarios: Usuario[] = [];
+  loading = false;
+  error: any;
 
   constructor( private store: Store<AppState> ) { }
 
@@ -25,8 +27,10 @@ export class ListaComponent implements OnInit {
    */
   public getUsers() {
     this.store.dispatch( usersActions.LoadUsers() );
-    this.store.select('users').subscribe( ( { users } ) => {
+    this.store.select('users').subscribe( ( { users, loading, error } ) => {
       this.usuarios = users;
+      this.loading = loading;
+      this.error = error;
     });
   }
 

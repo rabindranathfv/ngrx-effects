@@ -1,17 +1,32 @@
-<div class="card-columns">
-  
-  <div class="card" *ngFor="let user of usuarios">
-    <img class="card-img-top" [src]="user.avatar">
-    <div class="card-body">
-      <h5 class="card-title"> {{ user.first_name }} {{ user.last_name }} </h5>
-      <p class="card-text">This is a longer card with supporting.</p>
-      <p class="card-text">
-        <span class="text-muted">
-          ID: {{ user.id }}
-        </span>
-      </p>
-
-    </div>
+<ng-container *ngIf="loading; else elseTemplate">
+  <div class="alert alert-info text-center" role="alert">
+    <h4 class="alert-heading">Loading</h4>
+    <p>
+      <i class="fa fa-sync fa-spin fa-2x"></i>
+    </p>
+    <p class="mb-0"></p>
   </div>
- 
-</div>
+</ng-container>
+<ng-template #elseTemplate>
+  <div class="card-columns">
+  
+    <div class="card" *ngFor="let user of usuarios">
+      <img class="card-img-top" [src]="user.avatar">
+      <div class="card-body">
+        <h5 class="card-title"> {{ user.first_name }} {{ user.last_name }} </h5>
+        <p class="card-text">This is a longer card with supporting.</p>
+        <p class="card-text">
+          <span class="text-muted">
+            ID: {{ user.id }}
+          </span>
+        </p>
+  
+      </div>
+    </div>
+   
+  </div>
+</ng-template>
+
+
+
+
