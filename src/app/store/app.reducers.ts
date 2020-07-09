@@ -4,8 +4,11 @@ import * as Reducers from './reducers/index';
 
 export interface AppState {
     users: Reducers.UsersState;
+    user: Reducers.UserState;
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
-    users: Reducers.UserReducer,
+    users: Reducers.UsersReducer,
+    user: Reducers.UserReducer
+
 };

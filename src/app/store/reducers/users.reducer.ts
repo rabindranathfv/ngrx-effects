@@ -16,7 +16,7 @@ export const UsersInitialState: UsersState  = {
     error: null,
 };
 
-const userReducer = createReducer(UsersInitialState,
+const usersReducer = createReducer(UsersInitialState,
   on(UserActions.LoadUsers, state => ({ ...state, loading: true })),
   on(UserActions.SucessLoadUsers, (state, { users }) => ({
        ...state,
@@ -32,7 +32,7 @@ const userReducer = createReducer(UsersInitialState,
      }))
 );
 
-export function UserReducer(state, action) {
-  return userReducer(state, action);
+export function UsersReducer(state, action) {
+  return usersReducer(state, action);
 }
 
