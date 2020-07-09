@@ -3,7 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as userActions from '../actions/user.actions';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
-import { tap, mergeMap, map } from 'rxjs/operators';
+import { tap, mergeMap, map, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable()
 export class UserEffects {
@@ -18,7 +19,13 @@ export class UserEffects {
             mergeMap(
                 () => this.userService.getUsers()
                         .pipe(
-                            map( users => userActions.SucessLoadUsers({ users: users}) )
+                            map( users => userActions.SucessLoadUsers({ users: users }) ),
+                            catchError( err => of(userActions.ErrorLoadUsers({ payload: { 
+                                status: err.status,
+                                url: err.url,
+                                name: err.name,
+                                message: err.message
+                            } })))
                         )
             )
         )
