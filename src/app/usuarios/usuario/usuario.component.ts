@@ -15,13 +15,14 @@ export class UsuarioComponent implements OnInit {
 
   id: any;
   user: Usuario;
+  loading = false;
 
   constructor( private router: ActivatedRoute,
                private store: Store<AppState>) { }
 
   ngOnInit() {
     this.getUserId();
-    this.loadUser()
+    this.loadUser();
   }
 
   /**
@@ -38,9 +39,9 @@ export class UsuarioComponent implements OnInit {
    * loadUser
    */
   public loadUser() {
-    this.store.select('user').subscribe( ( { user }) => {
-      console.log('user:::', user);
+    this.store.select('user').subscribe( ( { user, loading }) => {
       this.user = user;
+      this.loading = loading;
     });
   }
 
