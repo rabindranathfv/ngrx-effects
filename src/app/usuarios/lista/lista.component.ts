@@ -3,7 +3,9 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducers';
 
 import { Usuario } from '../../models/usuario.model';
-import * as usersActions from '../../store/actions/user.actions';
+import * as usersActions from '../../store/actions/users.actions';
+import * as userActions from '../../store/actions/user.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
@@ -13,8 +15,12 @@ import * as usersActions from '../../store/actions/user.actions';
 export class ListaComponent implements OnInit {
 
   usuarios: Usuario[] = [];
+  loading = false;
+  error: any;
+  closeResult = '';
 
-  constructor( private store: Store<AppState> ) { }
+  constructor( private store: Store<AppState>,
+               private router: Router ) { }
 
   ngOnInit() {
     this.getUsers();
@@ -25,9 +31,26 @@ export class ListaComponent implements OnInit {
    */
   public getUsers() {
     this.store.dispatch( usersActions.LoadUsers() );
-    this.store.select('users').subscribe( ( { users } ) => {
+    this.store.select('users').subscribe( ( { users, loading, error } ) => {
       this.usuarios = users;
+      this.loading = loading;
+      this.error = error;
     });
+  }
+
+  userDetail( id: string ) {
+
+    if ( !id ) {
+      return;
+    }
+
+    this.router.navigate([ '/usuario', id ]);
+
+  }
+
+  userDelete(id: string) {
+    console.log('ENTRO:::');
+    this.store.dispatch( userActions.DeleteUser( { id } ));
   }
 
 }
