@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducers';
 
 import { Usuario } from '../../models/usuario.model';
-import * as usersActions from '../../store/actions/user.actions';
+import * as usersActions from '../../store/actions/users.actions';
 
 @Component({
   selector: 'app-lista',

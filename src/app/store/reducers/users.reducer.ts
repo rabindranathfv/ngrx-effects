@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import * as UserActions from '../actions/user.actions';
+import * as UsersActions from '../actions/users.actions';
 import { Usuario } from 'src/app/models/usuario.model';
 
 export interface UsersState {
@@ -17,14 +17,14 @@ export const UsersInitialState: UsersState  = {
 };
 
 const usersReducer = createReducer(UsersInitialState,
-  on(UserActions.LoadUsers, state => ({ ...state, loading: true })),
-  on(UserActions.SucessLoadUsers, (state, { users }) => ({
+  on(UsersActions.LoadUsers, state => ({ ...state, loading: true })),
+  on(UsersActions.SucessLoadUsers, (state, { users }) => ({
        ...state,
        loading: false,
        loaded: true,
        users: [... users]
     })),
-    on(UserActions.ErrorLoadUsers, (state,  { payload } ) => ({
+    on(UsersActions.ErrorLoadUsers, (state,  { payload } ) => ({
         ...state,
         loading: false,
         loaded: false,
