@@ -16,9 +16,11 @@
         <h5 class="card-title"> {{ user.first_name }} {{ user.last_name }} </h5>
         <p class="card-text">This is a longer card with supporting.</p>
         <div class="btns-container">
+
           <button type="button" class="btn btn-info btn-sm mr-1" (click)="userDetail( user.id )"><i class="fas fa-info-circle"></i></button>
           <button type="button" class="btn btn-info btn-sm mr-1" (click)="userDetail( user.id )"><i class="fas fa-user-edit"></i></button>
-          <button type="button" class="btn btn-info btn-sm mr-1" (click)="userDetail( user.id )"><i class="fas fa-trash-alt"></i></button>
+          <button type="button" class="btn btn-info btn-sm mr-1" (click)="userDelete( user.id )"><i class="fas fa-trash-alt"></i></button>
+          
         </div>
        
   
@@ -27,7 +29,3 @@
    
   </div>
 </ng-template>
-
-
-
-

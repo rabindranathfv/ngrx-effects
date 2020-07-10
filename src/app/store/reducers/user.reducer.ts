@@ -30,12 +30,29 @@ const userReducer = createReducer(userInitialState,
        loaded: true,
        user: { ...user }
     })),
-    on(UserActions.ErrorLoadUser, (state,  { payload } ) => ({
+  on(UserActions.ErrorLoadUser, (state,  { payload } ) => ({
         ...state,
         loading: false,
         loaded: false,
         error: payload
-     }))
+     })),
+  on(UserActions.DeleteUser, (state, { id }) => ({
+        ...state,
+        loading: true,
+        id
+    })),
+  on(UserActions.SucessDeleteUser, (state ) => ({
+        ...state,
+        loading: false,
+        loaded: true,
+        user: null
+     })),
+  on(UserActions.ErrorDeleteUser, (state,  { payload } ) => ({
+         ...state,
+         loading: false,
+         loaded: false,
+         error: payload
+      }))
 );
 
 export function UserReducer(state, action) {

@@ -4,6 +4,7 @@ import { AppState } from 'src/app/store/app.reducers';
 
 import { Usuario } from '../../models/usuario.model';
 import * as usersActions from '../../store/actions/users.actions';
+import * as userActions from '../../store/actions/user.actions';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,6 +17,7 @@ export class ListaComponent implements OnInit {
   usuarios: Usuario[] = [];
   loading = false;
   error: any;
+  closeResult = '';
 
   constructor( private store: Store<AppState>,
                private router: Router ) { }
@@ -44,6 +46,11 @@ export class ListaComponent implements OnInit {
 
     this.router.navigate([ '/usuario', id ]);
 
+  }
+
+  userDelete(id: string) {
+    console.log('ENTRO:::');
+    this.store.dispatch( userActions.DeleteUser( { id } ));
   }
 
 }

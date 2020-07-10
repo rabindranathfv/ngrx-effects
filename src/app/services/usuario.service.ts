@@ -27,4 +27,11 @@ export class UsuarioService {
     );
   }
 
+  deleteUserById( id: string) {
+    return this.http.delete(`${ this.url }/users/${ id }`)
+    .pipe(
+      map( user => user['data'])
+    );
+  }
+
 }
