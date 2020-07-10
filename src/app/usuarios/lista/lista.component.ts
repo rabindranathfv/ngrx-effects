@@ -4,6 +4,7 @@ import { AppState } from 'src/app/store/app.reducers';
 
 import { Usuario } from '../../models/usuario.model';
 import * as usersActions from '../../store/actions/users.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
@@ -16,7 +17,8 @@ export class ListaComponent implements OnInit {
   loading = false;
   error: any;
 
-  constructor( private store: Store<AppState> ) { }
+  constructor( private store: Store<AppState>,
+               private router: Router ) { }
 
   ngOnInit() {
     this.getUsers();
@@ -32,6 +34,16 @@ export class ListaComponent implements OnInit {
       this.loading = loading;
       this.error = error;
     });
+  }
+
+  userDetail( id: string ) {
+
+    if ( !id ) {
+      return;
+    }
+
+    this.router.navigate([ '/usuario', id ]);
+
   }
 
 }

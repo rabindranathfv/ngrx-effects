@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducers';
 
@@ -18,6 +19,7 @@ export class UsuarioComponent implements OnInit {
   loading = false;
 
   constructor( private router: ActivatedRoute,
+               private location: Location,
                private store: Store<AppState>) { }
 
   ngOnInit() {
@@ -44,5 +46,13 @@ export class UsuarioComponent implements OnInit {
       this.loading = loading;
     });
   }
+
+  /**
+   * goBack
+   */
+  public goBack() {
+    this.location.back();
+  }
+
 
 }
