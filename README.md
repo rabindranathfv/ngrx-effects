@@ -1,6 +1,6 @@
 # Effects
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
+This project was generated with [Angular CLI]version 9.0.2 and it is focusing on use ngrx with specifically ngrx effects
 
 ## Development server
 
